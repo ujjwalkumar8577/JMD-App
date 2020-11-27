@@ -13,14 +13,12 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +26,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,19 +78,16 @@ public class MenuActivity extends AppCompatActivity {
     private SharedPreferences details;
     private RequestNetwork checkConnection;
     private RequestNetwork.RequestListener _checkConnection_request_listener;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.menu);
         com.google.firebase.FirebaseApp.initializeApp(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         initialize(_savedInstanceState);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
-        }
-        else {
-            initializeLogic();
-        }
+        initializeLogic();
     }
 
     @Override
@@ -243,53 +241,6 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         };
-        user_locations.addChildEventListener(_user_locations_child_listener);
-
-        _locate_location_listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location _param1) {
-                final double _lat = _param1.getLatitude();
-                final double _lng = _param1.getLongitude();
-                final double _acc = _param1.getAccuracy();
-                if ((_lat != latitude) || (_lng != longitude)) {
-                    cal = Calendar.getInstance();
-                    user_tmp = new HashMap<>();
-                    user_tmp.put("uid", details.getString("uid", ""));
-                    user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
-                    user_tmp.put("loc_lat", String.valueOf(_lat));
-                    user_tmp.put("loc_lng", String.valueOf(_lng));
-                    user_locations.push().updateChildren(user_tmp);
-                }
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-            }
-        };
-
-        _checkConnection_request_listener = new RequestNetwork.RequestListener() {
-            @Override
-            public void onResponse(String _param1, String _param2) {
-                final String _tag = _param1;
-                final String _response = _param2;
-                textviewnic.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void onErrorResponse(String _param1, String _param2) {
-                final String _tag = _param1;
-                final String _message = _param2;
-                textviewnic.setVisibility(View.VISIBLE);
-            }
-        };
 
         _drawer_linear1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,18 +302,46 @@ public class MenuActivity extends AppCompatActivity {
         linear400.setBackground(gd);
         linear500.setBackground(gd);
         linear600.setBackground(gd);
-
         textviewnic.setVisibility(View.INVISIBLE);
         checkConnection.startRequestNetwork(RequestNetworkController.GET, "https://www.google.com/", "A", _checkConnection_request_listener);
 
-        if(!locate.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
-            SketchwareUtil.showMessage(getApplicationContext(),"GPS not enabled");
+        if (!locate.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            SketchwareUtil.showMessage(getApplicationContext(), "GPS not enabled");
         }
 
-        if (ContextCompat.checkSelfPermission(MenuActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locate.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, _locate_location_listener);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
         }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            SketchwareUtil.showMessage(getApplicationContext(),"Got location");
+                            final double _lat = location.getLatitude();
+                            final double _lng = location.getLongitude();
+                            final double _acc = location.getAccuracy();
+
+                            if ((_lat != latitude) || (_lng != longitude)) {
+                                latitude = _lat;
+                                longitude = _lng;
+                                cal = Calendar.getInstance();
+                                user_tmp = new HashMap<>();
+                                user_tmp.put("uid", details.getString("uid", ""));
+                                user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
+                                user_tmp.put("loc_lat", String.valueOf(_lat));
+                                user_tmp.put("loc_lng", String.valueOf(_lng));
+                                user_locations.push().updateChildren(user_tmp);
+                            }
+                        }
+                        else {
+                            SketchwareUtil.showMessage(getApplicationContext(),"Couldn't get location");
+                        }
+                    }
+                });
     }
 
     @Override

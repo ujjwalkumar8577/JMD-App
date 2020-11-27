@@ -332,39 +332,26 @@ public class MenuActivity extends AppCompatActivity {
 
     private void initializeLogic() {
         setTitle("Jai Maa Durga Traders");
+        _drawer_textview1.setText(details.getString("name", ""));
         anix.setTarget(linear1);
         anix.setPropertyName("alpha");
         anix.setFloatValues((float) (0.5d), (float) (1.0d));
         anix.setInterpolator(new DecelerateInterpolator());
         anix.setDuration((int) (500));
         anix.start();
-        android.graphics.drawable.GradientDrawable gd100 = new android.graphics.drawable.GradientDrawable();
-        gd100.setColor(Color.parseColor("#F44336"));
-        gd100.setCornerRadius(50);
-        linear100.setBackground(gd100);
-        android.graphics.drawable.GradientDrawable gd200 = new android.graphics.drawable.GradientDrawable();
-        gd200.setColor(Color.parseColor("#F44336"));
-        gd200.setCornerRadius(50);
-        linear200.setBackground(gd200);
-        android.graphics.drawable.GradientDrawable gd300 = new android.graphics.drawable.GradientDrawable();
-        gd300.setColor(Color.parseColor("#F44336"));
-        gd300.setCornerRadius(50);
-        linear300.setBackground(gd300);
-        android.graphics.drawable.GradientDrawable gd400 = new android.graphics.drawable.GradientDrawable();
-        gd400.setColor(Color.parseColor("#F44336"));
-        gd400.setCornerRadius(50);
-        linear400.setBackground(gd400);
-        android.graphics.drawable.GradientDrawable gd500 = new android.graphics.drawable.GradientDrawable();
-        gd500.setColor(Color.parseColor("#F44336"));
-        gd500.setCornerRadius(50);
-        linear500.setBackground(gd500);
-        android.graphics.drawable.GradientDrawable gd600 = new android.graphics.drawable.GradientDrawable();
-        gd600.setColor(Color.parseColor("#F44336"));
-        gd600.setCornerRadius(50);
-        linear600.setBackground(gd600);
+
+        android.graphics.drawable.GradientDrawable gd = new android.graphics.drawable.GradientDrawable();
+        gd.setColor(Color.parseColor("#F44336"));
+        gd.setCornerRadius(50);
+        linear100.setBackground(gd);
+        linear200.setBackground(gd);
+        linear300.setBackground(gd);
+        linear400.setBackground(gd);
+        linear500.setBackground(gd);
+        linear600.setBackground(gd);
+
         textviewnic.setVisibility(View.INVISIBLE);
-        latitude = 0;
-        longitude = 0;
+
         checkConnection.startRequestNetwork(RequestNetworkController.GET, "https://www.google.com/", "A", _checkConnection_request_listener);
         if (ContextCompat.checkSelfPermission(MenuActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locate.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 50, _locate_location_listener);

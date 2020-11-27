@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +22,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -73,7 +71,6 @@ public class MenuActivity extends AppCompatActivity {
     private DatabaseReference user_locations = _firebase.getReference("locations");
     private ChildEventListener _user_locations_child_listener;
     private LocationManager locate;
-    private LocationListener _locate_location_listener;
     private Calendar cal = Calendar.getInstance();
     private SharedPreferences details;
     private RequestNetwork checkConnection;
@@ -85,7 +82,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(_savedInstanceState);
         setContentView(R.layout.menu);
         com.google.firebase.FirebaseApp.initializeApp(this);
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         initialize(_savedInstanceState);
         initializeLogic();
     }
@@ -134,6 +130,7 @@ public class MenuActivity extends AppCompatActivity {
         locate = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         details = getSharedPreferences("user", Activity.MODE_PRIVATE);
         checkConnection = new RequestNetwork(this);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         linear100.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,44 +198,19 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        _user_locations_child_listener = new ChildEventListener() {
+        _checkConnection_request_listener = new RequestNetwork.RequestListener() {
             @Override
-            public void onChildAdded(DataSnapshot _param1, String _param2) {
-                GenericTypeIndicator<HashMap<String, Object>> _ind = new GenericTypeIndicator<HashMap<String, Object>>() {
-                };
-                final String _childKey = _param1.getKey();
-                final HashMap<String, Object> _childValue = _param1.getValue(_ind);
-
+            public void onResponse(String _param1, String _param2) {
+                final String _tag = _param1;
+                final String _response = _param2;
+                textviewnic.setVisibility(View.INVISIBLE);
             }
 
             @Override
-            public void onChildChanged(DataSnapshot _param1, String _param2) {
-                GenericTypeIndicator<HashMap<String, Object>> _ind = new GenericTypeIndicator<HashMap<String, Object>>() {
-                };
-                final String _childKey = _param1.getKey();
-                final HashMap<String, Object> _childValue = _param1.getValue(_ind);
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot _param1, String _param2) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot _param1) {
-                GenericTypeIndicator<HashMap<String, Object>> _ind = new GenericTypeIndicator<HashMap<String, Object>>() {
-                };
-                final String _childKey = _param1.getKey();
-                final HashMap<String, Object> _childValue = _param1.getValue(_ind);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError _param1) {
-                final int _errorCode = _param1.getCode();
-                final String _errorMessage = _param1.getMessage();
-
+            public void onErrorResponse(String _param1, String _param2) {
+                final String _tag = _param1;
+                final String _message = _param2;
+                textviewnic.setVisibility(View.VISIBLE);
             }
         };
 
@@ -314,34 +286,34 @@ public class MenuActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            SketchwareUtil.showMessage(getApplicationContext(),"Got location");
-                            final double _lat = location.getLatitude();
-                            final double _lng = location.getLongitude();
-                            final double _acc = location.getAccuracy();
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
 
-                            if ((_lat != latitude) || (_lng != longitude)) {
-                                latitude = _lat;
-                                longitude = _lng;
-                                cal = Calendar.getInstance();
-                                user_tmp = new HashMap<>();
-                                user_tmp.put("uid", details.getString("uid", ""));
-                                user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
-                                user_tmp.put("loc_lat", String.valueOf(_lat));
-                                user_tmp.put("loc_lng", String.valueOf(_lng));
-                                user_locations.push().updateChildren(user_tmp);
+                            // Got last known location. In some rare situations this can be null.
+                            if (location != null) {
+                                SketchwareUtil.showMessage(getApplicationContext(), "Got location");
+                                final double _lat = location.getLatitude();
+                                final double _lng = location.getLongitude();
+                                final double _acc = location.getAccuracy();
+
+                                if ((_lat != latitude) || (_lng != longitude)) {
+                                    latitude = _lat;
+                                    longitude = _lng;
+                                    cal = Calendar.getInstance();
+                                    user_tmp = new HashMap<>();
+                                    user_tmp.put("uid", details.getString("uid", ""));
+                                    user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
+                                    user_tmp.put("loc_lat", String.valueOf(_lat));
+                                    user_tmp.put("loc_lng", String.valueOf(_lng));
+                                    user_locations.push().updateChildren(user_tmp);
+                                }
+                            } else {
+                                SketchwareUtil.showMessage(getApplicationContext(), "Couldn't get location");
                             }
                         }
-                        else {
-                            SketchwareUtil.showMessage(getApplicationContext(),"Couldn't get location");
-                        }
-                    }
-                });
+                    });
     }
 
     @Override
@@ -376,12 +348,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
         exit.create().show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        locate.removeUpdates(_locate_location_listener);
     }
 
 }

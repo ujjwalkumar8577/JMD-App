@@ -99,14 +99,14 @@
 
                             <TextView
                                 android:id="@+id/textview3"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="Create Estimate"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -134,14 +134,14 @@
 
                             <TextView
                                 android:id="@+id/textview4"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="View Estimates"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -177,14 +177,14 @@
 
                             <TextView
                                 android:id="@+id/textview5"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="Add new Shop"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -212,14 +212,14 @@
 
                             <TextView
                                 android:id="@+id/textview6"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="View Shops"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -255,14 +255,14 @@
 
                             <TextView
                                 android:id="@+id/textview7"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="Cash Calculator"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -290,14 +290,14 @@
 
                             <TextView
                                 android:id="@+id/textview8"
-                                android:layout_width="120dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="8dp"
                                 android:gravity="center_horizontal"
+                                android:padding="8dp"
                                 android:text="Setup"
+                                android:textColor="#000000"
                                 android:textSize="14sp"
-                                android:textStyle="bold"
-                                android:textColor="#000000" />
+                                android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -328,7 +328,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/tub"
-                            android:scaleType="centerCrop"
+                            android:scaleType="fitCenter"
                             android:alpha="0.8"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1" />

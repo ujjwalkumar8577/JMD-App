@@ -1,0 +1,230 @@
+[
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_location_searching_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_location_searching_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_add_circle_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_add_circle_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_default_image.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\default_image.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_get_app_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_get_app_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_arrow_back_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_arrow_back_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_addshop.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\addshop.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_about.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\about.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_report.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\report.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_setup.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\setup.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_shops.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\shops.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_wall3.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\wall3.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_bug_report_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_bug_report_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_loupe_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_loupe_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_local_print_shop_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_local_print_shop_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_denomination.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\denomination.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_feedback.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\feedback.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_viewshop.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\viewshop.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_camera_alt_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_camera_alt_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_cash.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\cash.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_main.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_cancel_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_cancel_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_local_phone_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_local_phone_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_insert_invitation_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_insert_invitation_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_question_answer_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_question_answer_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_gps_fixed_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_gps_fixed_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_app_icon.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\app_icon.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_wall2.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\wall2.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_staff.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\staff.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_arrow_forward_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_arrow_forward_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_settings_applications_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_settings_applications_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_authenticate.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\authenticate.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_equalizer_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_equalizer_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_rupee.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\rupee.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_receipt_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_receipt_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_cust_detail.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\cust_detail.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_logowhite.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\logowhite.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\xml_provider_paths.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_info_outline_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_info_outline_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_search_grey.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_search_grey.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_menu.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\menu.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_cust_report.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\cust_report.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_settings.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\settings.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_person_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_person_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_location_on_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_location_on_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_account.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\account.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout_billcalculator.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\billcalculator.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_tub.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\tub.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_wall1.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\wall1.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_share_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_share_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\layout__drawer_menu.xml.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\layout\\_drawer_menu.xml"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_inst1.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\inst1.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_sync_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_sync_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_format_list_bulleted_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_format_list_bulleted_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_logo.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\logo.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_settings_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_settings_black.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_nibutter1.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\nibutter1.png"
+    },
+    {
+        "merged": "D:\\Projects\\AndroidStudio\\JMD\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_navigation_black.png.flat",
+        "source": "D:\\Projects\\AndroidStudio\\JMD\\app\\src\\main\\res\\drawable-xhdpi\\ic_navigation_black.png"
+    }
+]

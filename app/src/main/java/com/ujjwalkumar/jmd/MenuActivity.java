@@ -89,10 +89,7 @@ public class MenuActivity extends AppCompatActivity {
         com.google.firebase.FirebaseApp.initializeApp(this);
         initialize(_savedInstanceState);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
-        }
-        else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
         }
         else {
             initializeLogic();
@@ -133,6 +130,7 @@ public class MenuActivity extends AppCompatActivity {
         linear300 = (LinearLayout) findViewById(R.id.linear300);
         linear400 = (LinearLayout) findViewById(R.id.linear400);
         linear500 = (LinearLayout) findViewById(R.id.linear500);
+        linear600 = (LinearLayout) findViewById(R.id.linear600);
         _drawer_linear1 = (LinearLayout) _nav_view.findViewById(R.id.linear1);
         _drawer_linear2 = (LinearLayout) _nav_view.findViewById(R.id.linear2);
         _drawer_linear3 = (LinearLayout) _nav_view.findViewById(R.id.linear3);

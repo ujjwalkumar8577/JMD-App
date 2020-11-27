@@ -90,7 +90,11 @@ public class MenuActivity extends AppCompatActivity {
         initialize(_savedInstanceState);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
-        } else {
+        }
+        else if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+        }
+        else {
             initializeLogic();
         }
     }
@@ -253,9 +257,7 @@ public class MenuActivity extends AppCompatActivity {
                 final double _lat = _param1.getLatitude();
                 final double _lng = _param1.getLongitude();
                 final double _acc = _param1.getAccuracy();
-                if ((_lat == latitude) && (_lng == longitude)) {
-
-                } else {
+                if ((_lat != latitude) || (_lng != longitude)) {
                     cal = Calendar.getInstance();
                     user_tmp = new HashMap<>();
                     user_tmp.put("uid", details.getString("uid", ""));

@@ -137,7 +137,8 @@ public class AddshopActivity extends AppCompatActivity {
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
         } else {
             initializeLogic();
         }
@@ -437,9 +438,11 @@ public class AddshopActivity extends AppCompatActivity {
         cal = Calendar.getInstance();
         textviewdate.setText("Date : ".concat(new SimpleDateFormat("dd-MM-yyyy").format(cal.getTime())));
         loc_update = 0;
+
         if (ContextCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            loc.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 50, _loc_location_listener);
+            loc.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, _loc_location_listener);
         }
+
         areas.add((int) (0), "-select-");
         areas.add((int) (1), "Chakiya");
         areas.add((int) (2), "Civil Lines");
@@ -449,6 +452,7 @@ public class AddshopActivity extends AppCompatActivity {
         spinner1.setAdapter(new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, areas));
         ((ArrayAdapter) spinner1.getAdapter()).notifyDataSetChanged();
         spinner1.setSelection((int) (0));
+
         wait2 = new TimerTask() {
             @Override
             public void run() {
@@ -458,7 +462,6 @@ public class AddshopActivity extends AppCompatActivity {
                         if (loc_update == 0) {
                             android.location.Criteria criteria = new android.location.Criteria();
                             String bestProvider = loc.getBestProvider(criteria, true);
-
 
                             if (ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                 // TODO: Consider calling

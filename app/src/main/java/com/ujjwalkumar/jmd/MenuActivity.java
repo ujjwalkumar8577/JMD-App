@@ -13,12 +13,14 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -351,10 +353,15 @@ public class MenuActivity extends AppCompatActivity {
         linear600.setBackground(gd);
 
         textviewnic.setVisibility(View.INVISIBLE);
-
         checkConnection.startRequestNetwork(RequestNetworkController.GET, "https://www.google.com/", "A", _checkConnection_request_listener);
+
+        if(!locate.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        {
+            SketchwareUtil.showMessage(getApplicationContext(),"GPS not enabled");
+        }
+
         if (ContextCompat.checkSelfPermission(MenuActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locate.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 50, _locate_location_listener);
+            locate.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, _locate_location_listener);
         }
     }
 

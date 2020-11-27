@@ -14,7 +14,6 @@ public class AboutActivity extends AppCompatActivity {
 
     private LinearLayout layout;
     private ImageView imageback;
-
     private Intent ina = new Intent();
     private ObjectAnimator anix = new ObjectAnimator();
     private ObjectAnimator aniy = new ObjectAnimator();

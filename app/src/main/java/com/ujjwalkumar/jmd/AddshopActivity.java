@@ -71,7 +71,6 @@ public class AddshopActivity extends AppCompatActivity {
     private Timer _timer = new Timer();
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
     private FirebaseStorage _firebase_storage = FirebaseStorage.getInstance();
-
     private String path = "";
     private HashMap<String, Object> mp = new HashMap<>();
     private double loc_update = 0;

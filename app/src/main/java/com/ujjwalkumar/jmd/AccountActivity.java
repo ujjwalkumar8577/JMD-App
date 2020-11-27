@@ -36,7 +36,6 @@ import java.util.HashMap;
 public class AccountActivity extends AppCompatActivity {
 
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
-
     private HashMap<String, Object> user = new HashMap<>();
     private double t = 0;
     private HashMap<String, Object> tmp = new HashMap<>();

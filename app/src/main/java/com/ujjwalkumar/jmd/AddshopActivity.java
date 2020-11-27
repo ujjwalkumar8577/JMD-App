@@ -459,24 +459,29 @@ public class AddshopActivity extends AppCompatActivity {
                             android.location.Criteria criteria = new android.location.Criteria();
                             String bestProvider = loc.getBestProvider(criteria, true);
 
-                            try {
-                                Location location = loc.getLastKnownLocation(bestProvider);
-                                if (location == null) {
-                                    SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
-                                }
-                                if (location != null) {
-                                    lat = location.getLatitude();
-                                    lng = location.getLongitude();
-                                    imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
-                                    loc_update = 1;
-                                    SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
-                                    loc.removeUpdates(_loc_location_listener);
-                                }
-                            }
 
-                            catch (SecurityException e)
+                            if (ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            Location location = loc.getLastKnownLocation(bestProvider);
+                            if (location != null)
                             {
-                                // TODO
+                                lat = location.getLatitude();
+                                lng = location.getLongitude();
+                                imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+                                loc_update = 1;
+                                SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+                                loc.removeUpdates(_loc_location_listener);
+                            }
+                            else
+                            {
+                                SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
                             }
 
                         }

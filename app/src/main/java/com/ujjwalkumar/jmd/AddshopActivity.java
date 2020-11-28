@@ -31,6 +31,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -102,7 +104,6 @@ public class AddshopActivity extends AppCompatActivity {
     private ChildEventListener _fbs_child_listener;
     private SharedPreferences details;
     private LocationManager loc;
-    private LocationListener _loc_location_listener;
     private Calendar cal = Calendar.getInstance();
     private FirebaseAuth auth;
     private OnCompleteListener<AuthResult> _auth_create_user_listener;
@@ -120,6 +121,7 @@ public class AddshopActivity extends AppCompatActivity {
     private OnProgressListener _fbstorage_download_progress_listener;
     private OnFailureListener _fbstorage_failure_listener;
     private TimerTask wait2;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
@@ -130,7 +132,8 @@ public class AddshopActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
                 || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
         } else {
@@ -163,6 +166,8 @@ public class AddshopActivity extends AppCompatActivity {
         imageview4 = (ImageView) findViewById(R.id.imageview4);
         buttoncalc = (Button) findViewById(R.id.buttoncalc);
         buttonclear = (Button) findViewById(R.id.buttonclear);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         fp.setType("image/*");
         fp.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         details = getSharedPreferences("user", Activity.MODE_PRIVATE);
@@ -247,7 +252,6 @@ public class AddshopActivity extends AppCompatActivity {
                                     mp.put("lng", String.valueOf(lng));
                                     mp.put("img", d_url);
                                     fbs.child(mp.get("id").toString()).updateChildren(mp);
-                                    loc.removeUpdates(_loc_location_listener);
                                     mp.clear();
                                     SketchwareUtil.showMessage(getApplicationContext(), "Added successfully");
                                     _clear();
@@ -318,30 +322,6 @@ public class AddshopActivity extends AppCompatActivity {
         };
         fbs.addChildEventListener(_fbs_child_listener);
 
-        _loc_location_listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location _param1) {
-                final double _lat = _param1.getLatitude();
-                final double _lng = _param1.getLongitude();
-                final double _acc = _param1.getAccuracy();
-                imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
-                loc_update = 1;
-                lat = _lat;
-                lng = _lng;
-            }
-
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-            }
-        };
 
         _fbstorage_upload_progress_listener = new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -433,10 +413,6 @@ public class AddshopActivity extends AppCompatActivity {
         textviewdate.setText("Date : ".concat(new SimpleDateFormat("dd-MM-yyyy").format(cal.getTime())));
         loc_update = 0;
 
-        if (ContextCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            loc.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, _loc_location_listener);
-        }
-
         areas.add((int) (0), "-select-");
         areas.add((int) (1), "Chakiya");
         areas.add((int) (2), "Civil Lines");
@@ -447,46 +423,35 @@ public class AddshopActivity extends AppCompatActivity {
         ((ArrayAdapter) spinner1.getAdapter()).notifyDataSetChanged();
         spinner1.setSelection((int) (0));
 
-        wait2 = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (loc_update == 0) {
-                            android.location.Criteria criteria = new android.location.Criteria();
-                            String bestProvider = loc.getBestProvider(criteria, true);
+        if (!loc.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            SketchwareUtil.showMessage(getApplicationContext(), "GPS not enabled");
+        }
 
-                            if (ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                // TODO: Consider calling
-                                //    ActivityCompat#requestPermissions
-                                // here to request the missing permissions, and then overriding
-                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults)
-                                // to handle the case where the user grants the permission. See the documentation
-                                // for ActivityCompat#requestPermissions for more details.
-                                return;
-                            }
-                            Location location = loc.getLastKnownLocation(bestProvider);
-                            if (location != null)
-                            {
-                                lat = location.getLatitude();
-                                lng = location.getLongitude();
-                                imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
-                                loc_update = 1;
-                                SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
-                                loc.removeUpdates(_loc_location_listener);
-                            }
-                            else
-                            {
-                                SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
-                            }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
+        }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            lat = location.getLatitude();
+                            lng = location.getAccuracy();
+                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+                            loc_update = 1;
+                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+
+                        } else {
+                            SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
 
                         }
                     }
                 });
-            }
-        };
-        _timer.schedule(wait2, (int) (10000));
+
     }
 
     @Override
@@ -599,9 +564,6 @@ public class AddshopActivity extends AppCompatActivity {
     }
 
     private void _clear() {
-        if (ContextCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            loc.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, _loc_location_listener);
-        }
         _mapview1_controller.setMarkerVisible("id", false);
         loc_update = 0;
         path = "";
@@ -614,6 +576,32 @@ public class AddshopActivity extends AppCompatActivity {
         edittextaddress.setText("");
         edittextcontact.setText("");
         spinner1.setSelection((int) (0));
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+            return;
+        }
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            lat = location.getLatitude();
+                            lng = location.getAccuracy();
+                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+                            loc_update = 1;
+                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+
+                        } else {
+                            SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
+
+                        }
+                    }
+                });
+
     }
 
 }

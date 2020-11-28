@@ -432,7 +432,13 @@ public class ViewshopActivity extends AppCompatActivity {
                 public void onClick(View _view) {
                     inv.setAction(Intent.ACTION_VIEW);
                     inv.setData(Uri.parse("google.navigation:q=".concat(String.valueOf(lat).concat(",".concat(String.valueOf(lng))))));
-                    startActivity(inv);
+                    if(inv.resolveActivity(getPackageManager())!=null) {
+                        startActivity(inv);
+                    }
+                    else
+                    {
+                        SketchwareUtil.showMessage(getApplicationContext(),"No app found for navigation");
+                    }
                 }
             });
 

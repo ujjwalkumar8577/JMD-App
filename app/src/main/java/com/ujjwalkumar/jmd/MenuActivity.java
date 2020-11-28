@@ -28,11 +28,8 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.ujjwalkumar.jmd.util.RequestNetwork;
 import com.ujjwalkumar.jmd.util.RequestNetworkController;
 import com.ujjwalkumar.jmd.util.SketchwareUtil;
@@ -286,34 +283,30 @@ public class MenuActivity extends AppCompatActivity {
             return;
         }
 
-            fusedLocationClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            final double _lat = location.getLatitude();
+                            final double _lng = location.getLongitude();
+                            final double _acc = location.getAccuracy();
 
-                            // Got last known location. In some rare situations this can be null.
-                            if (location != null) {
-                                SketchwareUtil.showMessage(getApplicationContext(), "Got location");
-                                final double _lat = location.getLatitude();
-                                final double _lng = location.getLongitude();
-                                final double _acc = location.getAccuracy();
-
-                                if ((_lat != latitude) || (_lng != longitude)) {
-                                    latitude = _lat;
-                                    longitude = _lng;
-                                    cal = Calendar.getInstance();
-                                    user_tmp = new HashMap<>();
-                                    user_tmp.put("uid", details.getString("uid", ""));
-                                    user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
-                                    user_tmp.put("loc_lat", String.valueOf(_lat));
-                                    user_tmp.put("loc_lng", String.valueOf(_lng));
-                                    user_locations.push().updateChildren(user_tmp);
-                                }
-                            } else {
-                                SketchwareUtil.showMessage(getApplicationContext(), "Couldn't get location");
+                            if ((_lat != latitude) || (_lng != longitude)) {
+                                latitude = _lat;
+                                longitude = _lng;
+                                cal = Calendar.getInstance();
+                                user_tmp = new HashMap<>();
+                                user_tmp.put("uid", details.getString("uid", ""));
+                                user_tmp.put("time", String.valueOf((long) (cal.getTimeInMillis())));
+                                user_tmp.put("loc_lat", String.valueOf(_lat));
+                                user_tmp.put("loc_lng", String.valueOf(_lng));
+                                user_locations.push().updateChildren(user_tmp);
                             }
                         }
-                    });
+                    }
+                });
     }
 
     @Override

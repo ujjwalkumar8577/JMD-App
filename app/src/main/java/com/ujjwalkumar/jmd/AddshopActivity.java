@@ -11,11 +11,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -32,6 +32,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -65,6 +68,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY;
 
 public class AddshopActivity extends AppCompatActivity {
 
@@ -121,6 +126,7 @@ public class AddshopActivity extends AppCompatActivity {
     private OnFailureListener _fbstorage_failure_listener;
     private TimerTask wait2;
     private FusedLocationProviderClient fusedLocationClient;
+    private LocationCallback locationCallback;
 
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
@@ -174,6 +180,7 @@ public class AddshopActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         _file_cam = FileUtil.createNewPictureFile(getApplicationContext());
         Uri _uri_cam = null;
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             _uri_cam = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", _file_cam);
         } else {
@@ -196,25 +203,34 @@ public class AddshopActivity extends AppCompatActivity {
 
         _mapview1_controller = new GoogleMapController(mapview1, new OnMapReadyCallback() {
             @Override
-            public void onMapReady(GoogleMap _googleMap) {
+            public void onMapReady(final GoogleMap _googleMap) {
+
+                if (ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddshopActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(AddshopActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+                    return;
+                }
+
+                _googleMap.setMyLocationEnabled(true);
                 _mapview1_controller.setGoogleMap(_googleMap);
-                _mapview1_controller.moveCamera(25.426d, 81.816d);
-                _mapview1_controller.zoomTo(15);
-                wait = new TimerTask() {
+                _mapview1_controller.moveCamera(25.42d, 81.81d);
+                _mapview1_controller.zoomTo(14);
+                _googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                _mapview1_controller.moveCamera(lat, lng);
-                                _mapview1_controller.zoomTo(15);
-                                _mapview1_controller.addMarker("id", lat, lng);
-                                _mapview1_controller.setMarkerIcon("id", R.drawable.ic_location_on_black);
-                            }
-                        });
+                    public boolean onMyLocationButtonClick() {
+                        Location curloc = _googleMap.getMyLocation();
+                        if (curloc != null)
+                        {
+                            lat = curloc.getLatitude();
+                            lng = curloc.getLongitude();
+                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+                            loc_update = 1;
+                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+                        }
+                        return false;
                     }
-                };
-                _timer.scheduleAtFixedRate(wait, (int) (5000), (int) (5000));
+
+                });
+
             }
         });
 
@@ -431,25 +447,35 @@ public class AddshopActivity extends AppCompatActivity {
             return;
         }
 
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
+//        fusedLocationClient.getLastLocation()
+//                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+//                    @Override
+//                    public void onSuccess(Location location) {
+//
+//                        // Got last known location. In some rare situations this can be null.
+//                        if (location != null) {
+//                            lat = location.getLatitude();
+//                            lng = location.getLongitude();
+//                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+//                            loc_update = 1;
+//                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+//
+//                        } else {
+//                            SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
+//
+//                        }
+//                    }
+//                });
 
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            lat = location.getLatitude();
-                            lng = location.getAccuracy();
-                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
-                            loc_update = 1;
-                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
-
-                        } else {
-                            SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
-
-                        }
-                    }
-                });
+//        Location curloc = fusedLocationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY,ids);
+//        if(curloc!=null)
+//        {
+//            lat = curloc.getLatitude();
+//            lng = curloc.getLongitude();
+//            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
+//            loc_update = 1;
+//            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+//        }
 
     }
 
@@ -575,32 +601,6 @@ public class AddshopActivity extends AppCompatActivity {
         edittextaddress.setText("");
         edittextcontact.setText("");
         spinner1.setSelection((int) (0));
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
-            return;
-        }
-
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-
-                        // Got last known location. In some rare situations this can be null.
-                        if (location != null) {
-                            lat = location.getLatitude();
-                            lng = location.getAccuracy();
-                            imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
-                            loc_update = 1;
-                            SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
-
-                        } else {
-                            SketchwareUtil.showMessage(getApplicationContext(), "Please check your GPS");
-
-                        }
-                    }
-                });
-
     }
 
 }

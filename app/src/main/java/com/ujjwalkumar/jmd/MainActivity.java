@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Timer;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -31,7 +30,6 @@ public class StaffActivity extends AppCompatActivity {
 
     private Timer _timer = new Timer();
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
-
     private double t = 0;
     private String uid = "";
     private HashMap<String, Object> tmp = new HashMap<>();
@@ -236,8 +234,8 @@ public class StaffActivity extends AppCompatActivity {
 
     private void _setMarkers(final double _lat, final double _lng, final double _id) {
         cal.setTimeInMillis((long) (_id));
-        _mapview1_controller.moveCamera(_lat, _lng);
         _mapview1_controller.zoomTo(15);
+        _mapview1_controller.moveCamera(_lat, _lng);
         _mapview1_controller.addMarker(String.valueOf((long) (_id)), _lat, _lng);
         _mapview1_controller.setMarkerInfo(String.valueOf((long) (_id)), new SimpleDateFormat("d MMMM yyyy").format(cal.getTime()), new SimpleDateFormat("HH:mm:ss a").format(cal.getTime()));
         _mapview1_controller.setMarkerIcon(String.valueOf((long) (_id)), R.drawable.ic_location_on_black);

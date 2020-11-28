@@ -25,16 +25,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -66,16 +62,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Timer;
 import java.util.TimerTask;
-
-import static com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY;
 
 public class AddshopActivity extends AppCompatActivity {
 
     public final int REQ_CD_FP = 101;
     public final int REQ_CD_CAM = 102;
-    private Timer _timer = new Timer();
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
     private FirebaseStorage _firebase_storage = FirebaseStorage.getInstance();
     private String path = "";
@@ -113,7 +105,6 @@ public class AddshopActivity extends AppCompatActivity {
     private OnCompleteListener<AuthResult> _auth_create_user_listener;
     private OnCompleteListener<AuthResult> _auth_sign_in_listener;
     private OnCompleteListener<Void> _auth_reset_password_listener;
-    private TimerTask wait;
     private Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     private File _file_cam;
     private AlertDialog.Builder exit;
@@ -126,7 +117,6 @@ public class AddshopActivity extends AppCompatActivity {
     private OnFailureListener _fbstorage_failure_listener;
     private TimerTask wait2;
     private FusedLocationProviderClient fusedLocationClient;
-    private LocationCallback locationCallback;
 
     @Override
     protected void onCreate(Bundle _savedInstanceState) {
@@ -212,19 +202,23 @@ public class AddshopActivity extends AppCompatActivity {
 
                 _googleMap.setMyLocationEnabled(true);
                 _mapview1_controller.setGoogleMap(_googleMap);
-                _mapview1_controller.moveCamera(25.42d, 81.81d);
-                _mapview1_controller.zoomTo(14);
+                _mapview1_controller.moveCamera(25.45d, 81.85d);
+                _mapview1_controller.zoomTo(18);
                 _googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
                     public boolean onMyLocationButtonClick() {
-                        Location curloc = _googleMap.getMyLocation();
-                        if (curloc != null)
+                        Location currentLocation = _googleMap.getMyLocation();
+                        if (currentLocation != null)
                         {
-                            lat = curloc.getLatitude();
-                            lng = curloc.getLongitude();
+                            lat = currentLocation.getLatitude();
+                            lng = currentLocation.getLongitude();
                             imageview1.setImageResource(R.drawable.ic_gps_fixed_black);
                             loc_update = 1;
                             SketchwareUtil.showMessage(getApplicationContext(), "Location Updated");
+                        }
+                        else
+                        {
+                            SketchwareUtil.showMessage(getApplicationContext(), "Couldn't update location");
                         }
                         return false;
                     }
@@ -237,7 +231,12 @@ public class AddshopActivity extends AppCompatActivity {
         imageview2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View _view) {
-                startActivityForResult(fp, REQ_CD_FP);
+                try {
+                    startActivityForResult(fp, REQ_CD_FP);
+                }
+                catch(Exception e) {
+                    SketchwareUtil.showMessage(getApplicationContext(),"Couldn't upload image");
+                }
             }
         });
 

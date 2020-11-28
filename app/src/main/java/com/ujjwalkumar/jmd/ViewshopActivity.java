@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -27,6 +26,9 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -142,10 +144,17 @@ public class ViewshopActivity extends AppCompatActivity {
                 }
                 lat = Double.parseDouble(filtered.get((int) _position).get("lat").toString());
                 lng = Double.parseDouble(filtered.get((int) _position).get("lng").toString());
+
                 _mapview1_controller.moveCamera(lat, lng);
                 _mapview1_controller.zoomTo(15);
-                _mapview1_controller.addMarker("id", lat, lng);
-                _mapview1_controller.setMarkerIcon("id", R.drawable.ic_location_on_black);
+                _mapview1_controller.setMarkerPosition("id", lat, lng);
+
+// For creating line
+//                GoogleMap googleMap = _mapview1_controller.getGoogleMap();
+//                Polyline polyline1 = googleMap.addPolyline(new PolylineOptions()
+//                        .clickable(false)
+//                        .add(new LatLng(lat, lng),new LatLng(-34.747, 145.592)));
+
                 layout1.setVisibility(View.GONE);
                 layout2.setVisibility(View.VISIBLE);
             }
@@ -172,7 +181,15 @@ public class ViewshopActivity extends AppCompatActivity {
         _mapview1_controller = new GoogleMapController(mapview1, new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap _googleMap) {
+                if (ActivityCompat.checkSelfPermission(ViewshopActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(ViewshopActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ViewshopActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1000);
+                    return;
+                }
+                _googleMap.setMyLocationEnabled(true);
+
                 _mapview1_controller.setGoogleMap(_googleMap);
+                _mapview1_controller.addMarker("id", lat, lng);
+                _mapview1_controller.setMarkerIcon("id", R.drawable.ic_location_on_black);
 
             }
         });

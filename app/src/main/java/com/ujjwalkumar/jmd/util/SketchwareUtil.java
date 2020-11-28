@@ -1,16 +1,7 @@
 package com.ujjwalkumar.jmd.util;
 
 import android.content.Context;
-import android.util.SparseBooleanArray;
-import android.util.TypedValue;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
 
 public class SketchwareUtil {
     public static void showMessage(Context _context, String _s) {

@@ -46,8 +46,8 @@ public class RequestNetwork {
     }
 
     public interface RequestListener {
-        public void onResponse(String tag, String response);
+        void onResponse(String tag, String response);
 
-        public void onErrorResponse(String tag, String message);
+        void onErrorResponse(String tag, String message);
     }
 }

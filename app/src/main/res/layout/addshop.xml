@@ -111,7 +111,8 @@
                         android:textColorHint="#607D8B"
                         android:singleLine="true"
                         android:imeOptions="actionNext"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -147,7 +148,8 @@
                         android:singleLine="true"
                         android:inputType="phone"
                         android:imeOptions="actionNext"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -211,7 +213,8 @@
                         android:textColorHint="#607D8B"
                         android:singleLine="true"
                         android:imeOptions="actionDone"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:importantForAutofill="no" />
                 </LinearLayout>
 
                 <LinearLayout

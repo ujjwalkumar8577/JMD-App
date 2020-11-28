@@ -1422,7 +1422,6 @@ drawable ic_add_circle_black
 drawable ic_arrow_back_black
 drawable ic_bug_report_black
 drawable ic_camera_alt_black
-drawable ic_cancel_black
 drawable ic_equalizer_black
 drawable ic_format_list_bulleted_black
 drawable ic_get_app_black
@@ -1444,7 +1443,6 @@ drawable ic_question_answer_black
 drawable ic_receipt_black
 drawable ic_search_grey
 drawable ic_settings_applications_black
-drawable ic_settings_black
 drawable ic_share_black
 drawable ic_sync_black
 drawable inst1
@@ -1467,7 +1465,6 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_dark
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
-drawable nibutter1
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -1904,7 +1901,6 @@ id start
 id stretch
 id submenuarrow
 id submit_area
-id switch1
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -2086,10 +2082,8 @@ id textview931
 id textview932
 id textview933
 id textview934
-id textviewabout
 id textviewatx
 id textviewdate
-id textviewfeed
 id textviewforgot
 id textviewgst
 id textviewgtp
@@ -2252,7 +2246,6 @@ layout report
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
-layout settings
 layout setup
 layout shops
 layout staff

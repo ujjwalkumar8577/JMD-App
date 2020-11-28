@@ -168,8 +168,6 @@ public class StaffActivity extends AppCompatActivity {
                         if (lmp.get((int) t).get("uid").toString().equals(uid)) {
                             tmp = lmp.get((int) t);
                             lmp_filter.add(tmp);
-                        } else {
-
                         }
                         t++;
                     }

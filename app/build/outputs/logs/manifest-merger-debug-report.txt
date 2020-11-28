@@ -11,6 +11,7 @@ MERGED from [com.google.firebase:firebase-database:19.5.1] C:\Users\HP\.gradle\c
 MERGED from [com.google.firebase:firebase-storage:19.2.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\69ca7db41c48c06c7ad0d4931df2e02c\jetified-firebase-storage-19.2.0\AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\56ffcd59bb4dff27e993561fce14a638\jetified-play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\6462fec4d1c31418c18a5046370940b5\jetified-play-services-location-17.1.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\27635bfa7a4f63ee97fc4623191c6ac0\exifinterface-1.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e8b0310bcdb65e4a1dc4f08da1c1ae24\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\282a5c6e4fd1c04825c83bd3a04217ba\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\87943ca2fd2a8806ca6f49fe3dadad4f\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
@@ -392,6 +393,8 @@ MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\HP\.grad
 MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\56ffcd59bb4dff27e993561fce14a638\jetified-play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\6462fec4d1c31418c18a5046370940b5\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:17.1.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\6462fec4d1c31418c18a5046370940b5\jetified-play-services-location-17.1.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\27635bfa7a4f63ee97fc4623191c6ac0\exifinterface-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.1] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\27635bfa7a4f63ee97fc4623191c6ac0\exifinterface-1.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e8b0310bcdb65e4a1dc4f08da1c1ae24\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\e8b0310bcdb65e4a1dc4f08da1c1ae24\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\HP\.gradle\caches\transforms-2\files-2.1\282a5c6e4fd1c04825c83bd3a04217ba\jetified-play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44

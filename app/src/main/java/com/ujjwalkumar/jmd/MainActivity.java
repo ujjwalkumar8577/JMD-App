@@ -17,7 +17,6 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     private Timer _timer = new Timer();
-
     private LinearLayout layout;
 
     private Intent in = new Intent();

@@ -79,7 +79,6 @@ public class AddshopActivity extends AppCompatActivity {
     private double lat = 0;
     private double lng = 0;
     private String d_url = "";
-    private String enc = "";
     private ArrayList<String> areas = new ArrayList<>();
 
     private ImageView imageviewback;

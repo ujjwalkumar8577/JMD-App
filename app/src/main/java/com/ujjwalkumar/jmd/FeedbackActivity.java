@@ -30,7 +30,6 @@ import java.util.HashMap;
 public class FeedbackActivity extends AppCompatActivity {
 
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
-
     private HashMap<String, Object> mp = new HashMap<>();
 
     private LinearLayout layout;

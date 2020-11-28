@@ -40,7 +40,6 @@ import java.util.HashMap;
 public class MenuActivity extends AppCompatActivity {
 
     private FirebaseDatabase _firebase = FirebaseDatabase.getInstance();
-
     private Toolbar _toolbar;
     private DrawerLayout _drawer;
     private double latitude = 0;

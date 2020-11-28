@@ -47,12 +47,9 @@ public class ReportActivity extends AppCompatActivity {
     private double pos = 0;
     private String path = "";
     private String b = "";
-
     private ArrayList<HashMap<String, Object>> mpr = new ArrayList<>();
     private ArrayList<String> mthyr = new ArrayList<>();
 
-    private LinearLayout layout;
-    private LinearLayout linear;
     private LinearLayout layout2;
     private LinearLayout layout1;
     private ImageView imageback;
@@ -208,8 +205,6 @@ public class ReportActivity extends AppCompatActivity {
 
     private void initialize(Bundle _savedInstanceState) {
 
-        layout = (LinearLayout) findViewById(R.id.layout);
-        linear = (LinearLayout) findViewById(R.id.linear);
         layout2 = (LinearLayout) findViewById(R.id.layout2);
         layout1 = (LinearLayout) findViewById(R.id.layout1);
         imageback = (ImageView) findViewById(R.id.imageback);

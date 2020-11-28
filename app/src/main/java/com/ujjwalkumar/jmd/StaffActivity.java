@@ -37,7 +37,6 @@ public class StaffActivity extends AppCompatActivity {
     private HashMap<String, Object> tmp = new HashMap<>();
     private double u = 0;
     private ArrayList<HashMap<String, Object>> lmp = new ArrayList<>();
-    private ArrayList<String> positions = new ArrayList<>();
     private ArrayList<HashMap<String, Object>> lmp_filter = new ArrayList<>();
 
     private ImageView imageback;
